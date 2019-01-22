@@ -7,8 +7,12 @@ return [
     |
     | Specify the default values for creating a PDF with FPDF
     |
-    */
-    'orientation'   => 'P',
-    'unit'          => 'mm',
-    'size'          => 'A4',
+     */
+    'orientation' => 'P',
+    'unit' => 'mm',
+    'size' => 'A4',
+    'font-family' => 'Arial',
+    'font-size' => '14',
+    'font-style' => '',
+    'author' => 'TJGazel',
 ];
