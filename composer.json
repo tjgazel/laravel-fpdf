@@ -5,8 +5,7 @@
     "homepage": "https://github.com/tjgazel/laravel-fpdf",
     "license": "MIT",
     "type": "package",
-    "authors": [
-        {
+    "authors": [{
             "name": "Talles Gazel",
             "email": "tjgazel@gmail.com"
         },
@@ -20,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "TJGazel\\laraFpdf\\": "src/"
+            "TJGazel\\LaraFpdf\\": "src/"
         }
     },
     "minimum-stability": "dev",
