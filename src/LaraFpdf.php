@@ -12,63 +12,63 @@ class LaraFpdf extends FPDF
     protected $marginRight;
     protected $angle = 0;
 
-    public function getMaxWidth()
+    public function GetMaxWidth()
     {
         return $this->maxWidth;
     }
 
-    public function getMaxHeight()
+    public function GetMaxHeight()
     {
         return $this->maxHeight;
     }
 
-    public function getMarginLeft()
+    public function GetMarginLeft()
     {
         return $this->marginLeft;
     }
 
-    public function getMarginRight()
+    public function GetMarginRight()
     {
         return $this->marginRight;
     }
 
-    public function getAngle()
+    public function GetAngle()
     {
         return $this->angle;
     }
 
-    public function setMaxWidth($maxWidth)
+    public function SetMaxWidth($maxWidth)
     {
         $this->maxWidth = $maxWidth;
     }
 
-    public function setMaxHeight($maxHeight)
+    public function SetMaxHeight($maxHeight)
     {
         $this->maxHeight = $maxHeight;
     }
 
-    public function setMarginLeft($marginLeft)
+    public function SetMarginLeft($marginLeft)
     {
         $this->marginLeft = $marginLeft;
     }
 
-    public function setMarginRight($marginRight)
+    public function SetMarginRight($marginRight)
     {
         $this->marginRight = $marginRight;
     }
 
-    public function setAngle($angle)
+    public function SetAngle($angle)
     {
         $this->angle = $angle;
     }
 
-    public function setOficio($width = 216, $height = 330)
+    public function SetOficio($width = 216, $height = 330)
     {
         $this->setMaxHeight($width);
         $this->setMaxWidth($height);
     }
 
-    public function setA4($width = 210, $height = 297)
+    public function SetA4($width = 210, $height = 297)
     {
         $this->setMaxHeight($width);
         $this->setMaxWidth($height);
@@ -81,12 +81,12 @@ class LaraFpdf extends FPDF
 
     public function MultiCel($w, $h, $txt, $border = 0, $align = 'J', $fill = false)
     {
-        parent::MultiCell($this->celX($w), $h, $txt, $border, $align, $fill);
+        parent::MultiCell($this->CelX($w), $h, $txt, $border, $align, $fill);
     }
 
     public function Cel($w, $h = 0, $txt = '', $border = 0, $ln = 0, $align = '', $fill = false, $link = '')
     {
-        parent::Cell($this->celX($w), $h, utf8_decode($txt), $border, $ln, $align, $fill, $link);
+        parent::Cell($this->CelX($w), $h, utf8_decode($txt), $border, $ln, $align, $fill, $link);
     }
 
     public function Rotate($angle, $x = -1, $y = -1)
@@ -205,14 +205,14 @@ class LaraFpdf extends FPDF
         parent::_endpage();
     }
 
-    public function celX($width)
+    public function CelX($width)
     {
         return ($width * ($this->w - $this->lMargin - $this->rMargin)) / 100;
     }
 
-    public function posX($width)
+    public function PosX($width)
     {
-        $this->SetX($this->celX($width) + $this->lMargin);
+        $this->SetX($this->CelX($width) + $this->lMargin);
     }
 
 }
