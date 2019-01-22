@@ -6,72 +6,72 @@ use TJGazel\LaraFpdf\Fpdf\FPDF;
 
 class LaraFpdf extends FPDF
 {
+    protected $maxWidth;
+    protected $maxHeight;
+    protected $marginLeft;
+    protected $marginRight;
+    protected $angle = 0;
 
-    public $totalLargura;
-    public $margemEsquerda;
-    public $margemDireita;
-    public $totalAltura;
-//    Demais atributos
-
-    protected $situacaoAprovado;
-    protected $cargaHoraria;
-    protected $diasLetivos;
-
-    public function getTotalLargura()
+    public function getMaxWidth()
     {
-        return $this->totalLargura;
+        return $this->maxWidth;
     }
 
-    public function getMargemEsquerda()
+    public function getMaxHeight()
     {
-        return $this->margemEsquerda;
+        return $this->maxHeight;
     }
 
-    public function getMargemDireita()
+    public function getMarginLeft()
     {
-        return $this->margemDireita;
+        return $this->marginLeft;
     }
 
-    public function getTotalAltura()
+    public function getMarginRight()
     {
-        return $this->totalAltura;
+        return $this->marginRight;
     }
 
-    public function setTotalLargura($totalLargura)
+    public function getAngle()
     {
-        $this->totalLargura = $totalLargura;
+        return $this->angle;
     }
 
-    public function setMargemEsquerda($margemEsquerda)
+    public function setMaxWidth($maxWidth)
     {
-        $this->margemEsquerda = $margemEsquerda;
+        $this->maxWidth = $maxWidth;
     }
 
-    public function setMargemDireita($margemDireita)
+    public function setMaxHeight($maxHeight)
     {
-        $this->margemDireita = $margemDireita;
+        $this->maxHeight = $maxHeight;
     }
 
-    public function setTotalAltura($totalAltura)
+    public function setMarginLeft($marginLeft)
     {
-        $this->totalAltura = $totalAltura;
+        $this->marginLeft = $marginLeft;
     }
 
-    public function setOficio($larg = 216, $altu = 330)
+    public function setMarginRight($marginRight)
     {
-        $this->setTotalAltura($larg);
-        $this->setTotalLargura($altu);
+        $this->marginRight = $marginRight;
     }
 
-    public function setA4($larg = 210, $altu = 297)
+    public function setAngle($angle)
     {
-        $this->setTotalAltura($larg);
-        $this->setTotalLargura($altu);
+        $this->angle = $angle;
     }
 
-    public function getDocumentRoot()
+    public function setOficio($width = 216, $height = 330)
     {
-        return $_SERVER['DOCUMENT_ROOT'];
+        $this->setMaxHeight($width);
+        $this->setMaxWidth($height);
+    }
+
+    public function setA4($width = 210, $height = 297)
+    {
+        $this->setMaxHeight($width);
+        $this->setMaxWidth($height);
     }
 
     public function Cell($w, $h = 0, $txt = '', $border = 0, $ln = 0, $align = '', $fill = false, $link = '')
@@ -88,8 +88,6 @@ class LaraFpdf extends FPDF
     {
         parent::Cell($this->celX($w), $h, utf8_decode($txt), $border, $ln, $align, $fill, $link);
     }
-
-    public $angle = 0;
 
     public function Rotate($angle, $x = -1, $y = -1)
     {
@@ -136,7 +134,7 @@ class LaraFpdf extends FPDF
         }
     }
 
-    public function CellRota($X, $Y, $text, $bordas, $alinha, $angle, $baixe = 0, $ln = 0)
+    public function CellRota($X, $Y, $text, $border, $alinha, $angle, $baixe = 0, $ln = 0)
     {
         $this->angle = $angle;
         $nx = $x = $this->GetX();
@@ -158,7 +156,7 @@ class LaraFpdf extends FPDF
             $this->_out(sprintf('q %.5F %.5F %.5F %.5F %.2F %.2F cm 1 0 0 1 %.2F %.2F cm', $c, $s, -$s, $c, $cx, $cy, -$cx, -$cy));
         }
         $this->SetXY($recuo, $y - $r);
-        $this->Cell($Y, $X, $text, $bordas, 0, $alinha);
+        $this->Cell($Y, $X, $text, $border, 0, $alinha);
         $this->_out('Q');
         $x = $nx;
         $this->SetXY($x + $X, $y);
@@ -167,13 +165,13 @@ class LaraFpdf extends FPDF
         }
     }
 
-    public function MultiRota($X, $Y, $text, $bordas, $alinha, $angle, $baixe = 0, $ln = 0, $subLines = 3)
+    public function MultiRota($X, $Y, $text, $border, $alinha, $angle, $baixe = 0, $ln = 0, $subLines = 3)
     {
         $this->angle = $angle;
         $nx = $x = $this->GetX();
         $y = $this->GetY();
         $recuo = $x - $baixe;
-        $r = 0; #Regulagem para posição negativa
+        $r = 0;
         if ($recuo < 0) {
             $this->SetX($x + $Y);
             $x = $this->GetX();
@@ -189,7 +187,7 @@ class LaraFpdf extends FPDF
             $this->_out(sprintf('q %.5F %.5F %.5F %.5F %.2F %.2F cm 1 0 0 1 %.2F %.2F cm', $c, $s, -$s, $c, $cx, $cy, -$cx, -$cy));
         }
         $this->SetXY($recuo, $y - $r);
-        $this->MultiCell($Y, $X / $subLines, $text, $bordas, $alinha);
+        $this->MultiCell($Y, $X / $subLines, $text, $border, $alinha);
         $this->_out('Q');
         $x = $nx;
         $this->SetXY($x + $X, $y);
@@ -207,23 +205,14 @@ class LaraFpdf extends FPDF
         parent::_endpage();
     }
 
-    public function celX($larg)
+    public function celX($width)
     {
-        return ($larg * ($this->w - $this->lMargin - $this->rMargin)) / 100;
+        return ($width * ($this->w - $this->lMargin - $this->rMargin)) / 100;
     }
 
-    public function posX($larg)
+    public function posX($width)
     {
-        $this->SetX($this->celX($larg) + $this->lMargin);
-    }
-
-############################### Funçoes do Diário ######################################
-
-    public function getBrasao($img = 'logo-instituicao.jpg')
-    {
-        return $this->getDocumentRoot() . '/img/' . $img;
+        $this->SetX($this->celX($width) + $this->lMargin);
     }
 
 }
-
-//gg
