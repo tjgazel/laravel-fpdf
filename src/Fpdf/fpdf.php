@@ -1,4 +1,4 @@
-<?php namespace Tjgazel\LaraFpdf\Fpdf;
+<?php namespace TJGazel\LaraFpdf\Fpdf;
 /*******************************************************************************
 * FPDF                                                                         *
 *                                                                              *

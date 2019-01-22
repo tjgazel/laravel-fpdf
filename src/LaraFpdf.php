@@ -1,9 +1,8 @@
 <?php
 
-namespace Tjgazel\LaraFpdf;
+namespace TJGazel\LaraFpdf;
 
-
-use Tjgazel\LaraFpdf\Fpdf\FPDF;
+use TJGazel\LaraFpdf\Fpdf\FPDF;
 
 class LaraFpdf extends FPDF
 {
@@ -90,16 +89,22 @@ class LaraFpdf extends FPDF
         parent::Cell($this->celX($w), $h, utf8_decode($txt), $border, $ln, $align, $fill, $link);
     }
 
-    var $angle = 0;
+    public $angle = 0;
 
-    function Rotate($angle, $x = -1, $y = -1)
+    public function Rotate($angle, $x = -1, $y = -1)
     {
-        if ($x == -1)
+        if ($x == -1) {
             $x = $this->x;
-        if ($y == -1)
+        }
+
+        if ($y == -1) {
             $y = $this->y;
-        if ($this->angle != 0)
+        }
+
+        if ($this->angle != 0) {
             $this->_out('Q');
+        }
+
         $this->angle = $angle;
         if ($angle != 0) {
             $angle *= M_PI / 180;
@@ -111,14 +116,15 @@ class LaraFpdf extends FPDF
         }
     }
 
-    function Rotate2($angle, $X = 0, $L = 0)
+    public function Rotate2($angle, $X = 0, $L = 0)
     {
         $x = $this->x + $X; // - $Y;
         $y = $this->y + $X;
-        if ($this->angle != 0)
+        if ($this->angle != 0) {
             $this->_out('Q');
-        $this->angle = $angle;
+        }
 
+        $this->angle = $angle;
 
         if ($angle != 0) {
             $angle *= M_PI / 180;
@@ -130,7 +136,7 @@ class LaraFpdf extends FPDF
         }
     }
 
-    function CellRota($X, $Y, $text, $bordas, $alinha, $angle, $baixe = 0, $ln = 0)
+    public function CellRota($X, $Y, $text, $bordas, $alinha, $angle, $baixe = 0, $ln = 0)
     {
         $this->angle = $angle;
         $nx = $x = $this->GetX();
@@ -161,7 +167,7 @@ class LaraFpdf extends FPDF
         }
     }
 
-    function MultiRota($X, $Y, $text, $bordas, $alinha, $angle, $baixe = 0, $ln = 0, $subLines = 3)
+    public function MultiRota($X, $Y, $text, $bordas, $alinha, $angle, $baixe = 0, $ln = 0, $subLines = 3)
     {
         $this->angle = $angle;
         $nx = $x = $this->GetX();
@@ -192,7 +198,7 @@ class LaraFpdf extends FPDF
         }
     }
 
-    function _endpage()
+    public function _endpage()
     {
         if ($this->angle != 0) {
             $this->angle = 0;
@@ -210,7 +216,6 @@ class LaraFpdf extends FPDF
     {
         $this->SetX($this->celX($larg) + $this->lMargin);
     }
-
 
 ############################### Funçoes do Diário ######################################
 

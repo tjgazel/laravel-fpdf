@@ -3,6 +3,7 @@
 namespace TJGazel\LaraFpdf;
 
 use Illuminate\Support\ServiceProvider;
+use TJGazel\LaraFpdf\LaraFpdf;
 
 class LaraFpdfServiceProvider extends ServiceProvider
 {
