@@ -34,7 +34,11 @@ class LaraFpdfServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'lara-fpdf');
-        $this->app->call([$this, 'registerLaraFpdf']);
+        // $this->app->call([$this, 'registerLaraFpdf']);
+        $this->app->singleton(LaraFpdf::class, function ($app) {
+            return new LaraFpdf($app['config']['orientation'], $app['config']['unit'], $app['config']['size']);
+        });
+
     }
 
     public function registerLaraFpdf()
