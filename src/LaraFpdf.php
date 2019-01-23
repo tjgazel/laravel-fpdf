@@ -114,33 +114,13 @@ class LaraFpdf extends FPDF
         }
     }
 
-    public function Rotate2($angle, $X = 0, $L = 0)
-    {
-        $x = $this->x + $X; // - $Y;
-        $y = $this->y + $X;
-        if ($this->angle != 0) {
-            $this->_out('Q');
-        }
-
-        $this->angle = $angle;
-
-        if ($angle != 0) {
-            $angle *= M_PI / 180;
-            $c = cos($angle);
-            $s = sin($angle);
-            $cx = $x * $this->k;
-            $cy = ($this->h - $y) * $this->k;
-            $this->_out(sprintf('q %.5F %.5F %.5F %.5F %.2F %.2F cm 1 0 0 1 %.2F %.2F cm', $c, $s, -$s, $c, $cx, $cy, -$cx, -$cy));
-        }
-    }
-
     public function CellRota($X, $Y, $text, $border, $alinha, $angle, $baixe = 0, $ln = 0)
     {
         $this->angle = $angle;
         $nx = $x = $this->GetX();
         $y = $this->GetY();
         $recuo = $x - $baixe;
-        $r = 0; #Regulagem para posição negativa
+        $r = 0;
         if ($recuo < 0) {
             $this->SetX($x + $Y);
             $x = $this->GetX();
