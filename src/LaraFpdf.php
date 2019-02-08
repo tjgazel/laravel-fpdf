@@ -195,4 +195,21 @@ class LaraFpdf extends FPDF
         $this->SetX($this->CelX($width) + $this->lMargin);
     }
 
+    public function SetDarkFill($inverse = false)
+    {
+        if ($inverse) {
+            $this->SetFillColor(204, 204, 204);
+            $this->SetTextColor(34, 34, 34);
+        } else {
+            $this->SetFillColor(102, 102, 102);
+            $this->SetTextColor(255, 255, 255);
+        }
+    }
+
+    public function SetDefaultFill()
+    {
+        $this->SetFillColor(255, 255, 255);
+        $this->SetTextColor(34, 34, 34);
+    }
+
 }
