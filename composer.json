@@ -1,36 +1,41 @@
 {
-    "name": "tjgazel/laravel-fpdf",
-    "description": "Extension lib FPDF  for laravel 5.*",
-    "keywords": ["laravel", "pdf", "fpdf"],
-    "homepage": "https://github.com/tjgazel/laravel-fpdf",
-    "license": "MIT",
-    "type": "package",
-    "authors": [{
-            "name": "Talles Gazel",
-            "email": "tjgazel@gmail.com"
-        },
-        {
-            "name": "Giovanni Camargo",
-            "email": "vannipassos@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.4.0"
+  "name": "tjgazel/laravel-fpdf",
+  "description": "Extension lib FPDF  for laravel 5.*",
+  "keywords": [
+    "laravel",
+    "pdf",
+    "fpdf"
+  ],
+  "homepage": "https://github.com/tjgazel/laravel-fpdf",
+  "license": "MIT",
+  "type": "package",
+  "authors": [
+    {
+      "name": "Talles Gazel",
+      "email": "tjgazel@gmail.com"
     },
-    "autoload": {
-        "psr-4": {
-            "TJGazel\\LaraFpdf\\": "src/"
-        }
-    },
-    "minimum-stability": "dev",
-    "extra": {
-        "laravel": {
-            "providers": [
-                "TJGazel\\LaraFpdf\\LaraFpdfServiceProvider"
-            ],
-            "aliases": {
-                "LaraFpdf": "TJGazel\\LaraFpdf\\Facades\\LaraFpdf"
-            }
-        }
+    {
+      "name": "Giovanni Camargo",
+      "email": "vannipassos@gmail.com"
     }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "TJGazel\\LaraFpdf\\": "src/"
+    }
+  },
+  "minimum-stability": "stable",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "TJGazel\\LaraFpdf\\LaraFpdfServiceProvider"
+      ],
+      "aliases": {
+        "LaraFpdf": "TJGazel\\LaraFpdf\\Facades\\LaraFpdf"
+      }
+    }
+  }
 }
