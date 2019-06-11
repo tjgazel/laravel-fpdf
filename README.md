@@ -9,7 +9,7 @@ composer require tjgazel/laravel-fpdf
 ```
 
 **2) Optional:** Laravel 5.4 and below
-<br>
+
 Add `TJGazel\Toastr\ToastrServiceProvider::class` to `providers` in `config/app.php`. <br>
 Add `'Toastr' => TJGazel\Toastr\Facades\Toastr::class` to `aliases` in `config/app.php`. <br>
 
@@ -31,7 +31,7 @@ Add `'Toastr' => TJGazel\Toastr\Facades\Toastr::class` to `aliases` in `config/a
 
 ## Usage
 
-### 1) Facade
+### (Method 1) Facade
 
 ```php
 use App\Http\Controllers\Controller;
@@ -51,7 +51,9 @@ class MyController extends Controller
 }
 ```
 
-### 1) Extends class
+<br>
+
+### (Method 2) Extends class
 
 create your pdf class
 
