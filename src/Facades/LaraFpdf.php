@@ -1,10 +1,15 @@
-<?php 
+<?php
 
 namespace TJGazel\LaraFpdf\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use TJGazel\LaraFpdf\LaraFpdf as Fpdf;
 
+/**
+ * @see \TJGazel\LaraFpdf\LaraFpdf
+ * Class LaraFpdf
+ * @package TJGazel\LaraFpdf\Facades
+ */
 class LaraFpdf extends Facade
 {
     /**
